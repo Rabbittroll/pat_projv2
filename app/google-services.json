@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "636590800188",
+    "project_id": "photolist-3b33d",
+    "storage_bucket": "photolist-3b33d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636590800188:android:81e4a43f0899385fe57239",
+        "android_client_info": {
+          "package_name": "edu.utap.photolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636590800188-7rganbs5ggqb8q3mikih0e1tloatfnn9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.utap.photolist",
+            "certificate_hash": "c5a3d5207a7b37e96a7c0354b867120af7b761d4"
+          }
+        },
+        {
+          "client_id": "636590800188-8tmq3p6f9nti2kvnqv4e6gl7cr3mmtpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt4srYYQ0kpuxfNDh4F1XcKqhSLlMrfUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636590800188-8tmq3p6f9nti2kvnqv4e6gl7cr3mmtpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
