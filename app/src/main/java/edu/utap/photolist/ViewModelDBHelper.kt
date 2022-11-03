@@ -40,7 +40,8 @@ class ViewModelDBHelper() {
     private fun dbFetchPhotoMeta(sortInfo: SortInfo,
                                  notesList: MutableLiveData<List<PhotoMeta>>) {
         // XXX Write me and use limitAndGet
-        db.collection(rootCollection)
+        val query = db.collection(rootCollection).orderBy(sortInfo.sortColumn.toString())
+        limitAndGet(query, notesList)
     }
 
     // https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document
@@ -52,6 +53,7 @@ class ViewModelDBHelper() {
         // You can get a document id if you need it.
         //photoMeta.firestoreID = db.collection(rootCollection).document().id
         // XXX Write me: add photoMeta
+        db.collection(rootCollection).document(photoMeta.firestoreID).set(photoMeta)
     }
 
     // https://firebase.google.com/docs/firestore/manage-data/delete-data#delete_documents
@@ -61,5 +63,8 @@ class ViewModelDBHelper() {
         photoMetaList: MutableLiveData<List<PhotoMeta>>
     ) {
         // XXX Write me.  Make sure you delete the correct entry
+        db.collection(rootCollection).document(photoMeta.firestoreID).delete()
+            .addOnSuccessListener { Log.d(javaClass.simpleName, "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(javaClass.simpleName, "Error deleting document", e) }
     }
 }

@@ -87,6 +87,10 @@ class HomeFragment :
             Log.d(null, "in observe sort")
         }
 
+        binding.cameraButton.setOnClickListener {
+
+        }
+
         // XXX Write me, onclick listeners and observers
 
 
