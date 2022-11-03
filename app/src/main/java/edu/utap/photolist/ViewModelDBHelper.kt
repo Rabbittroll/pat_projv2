@@ -40,6 +40,7 @@ class ViewModelDBHelper() {
     private fun dbFetchPhotoMeta(sortInfo: SortInfo,
                                  notesList: MutableLiveData<List<PhotoMeta>>) {
         // XXX Write me and use limitAndGet
+        db.collection(rootCollection)
     }
 
     // https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document

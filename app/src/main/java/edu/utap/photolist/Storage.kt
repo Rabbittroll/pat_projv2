@@ -16,6 +16,9 @@ class Storage {
     // https://firebase.google.com/docs/storage/android/upload-files#upload_from_a_local_file
     fun uploadImage(localFile: File, uuid: String, uploadSuccess:(Long)->Unit) {
         // XXX Write me
+        var file = Uri.fromFile(localFile)
+        val ref = photoStorage
+        var uploadTask = ref.putFile(file)
 
         // Register observers to listen for when the download is done or if it fails
         uploadTask

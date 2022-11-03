@@ -65,6 +65,9 @@ class MainViewModel() : ViewModel() {
 
     fun removePhotoAt(position: Int) {
         // XXX Deletion requires two different operations.  What are they?
+        val temp = photoMetaList.value?.toMutableList()
+        temp?.removeAt(position)
+        photoMetaList.value = temp?.toList()
     }
 
     // Get a note from the memory cache

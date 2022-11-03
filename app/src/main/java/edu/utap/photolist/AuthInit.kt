@@ -24,6 +24,13 @@ class AuthInit(viewModel: MainViewModel, signInLauncher: ActivityResultLauncher<
             // Create and launch sign-in intent
             // XXX Write me. Set authentication providers and start sign-in for user
             // setIsSmartLockEnabled(false) solves some problems
+
+            val signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setIsSmartLockEnabled(false)
+                .build()
+            signInLauncher.launch(signInIntent)
         } else {
             Log.d(TAG, "XXX user ${user.displayName} email ${user.email}")
             viewModel.updateUser()

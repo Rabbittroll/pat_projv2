@@ -79,7 +79,17 @@ class HomeFragment :
         // Swipe left to delete
         initTouchHelper().attachToRecyclerView(rv)
 
+        viewModel.observePhotoMeta().observe(viewLifecycleOwner){
+            Log.d(null, "in observe photo")
+        }
+
+        viewModel.observeSortInfo().observe(viewLifecycleOwner){
+            Log.d(null, "in observe sort")
+        }
+
         // XXX Write me, onclick listeners and observers
+
+
     }
 
     override fun onDestroyView() {
