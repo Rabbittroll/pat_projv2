@@ -1,8 +1,8 @@
 # fc8
 
-1. Name:
-2. EID:
-3. Email:
-4. Time:
-5. Slip days:
-6. Comments:
+1. Name: Patrick O'Donnell
+2. EID: pbo225
+3. Email: pbmodonnell@utexas.edu
+4. Time: 7
+5. Slip days: 0
+6. Comments: N/A
