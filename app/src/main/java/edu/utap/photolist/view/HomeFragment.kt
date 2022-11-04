@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import edu.utap.photolist.MainActivity
 import edu.utap.photolist.MainViewModel
 import edu.utap.photolist.R
 import edu.utap.photolist.SortColumn
 import edu.utap.photolist.databinding.FragmentHomeBinding
 import java.util.*
+import java.util.UUID.randomUUID
 
 class HomeFragment :
     Fragment(R.layout.fragment_home) {
@@ -88,7 +90,9 @@ class HomeFragment :
         }
 
         binding.cameraButton.setOnClickListener {
-
+            viewModel.takePhoto(binding.inputET.text.toString()){
+                viewModel.createPhotoMeta(binding.inputET.text.toString(), randomUUID().toString() , it)
+            }
         }
 
         // XXX Write me, onclick listeners and observers

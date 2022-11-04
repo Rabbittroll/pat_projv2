@@ -53,7 +53,8 @@ class ViewModelDBHelper() {
         // You can get a document id if you need it.
         //photoMeta.firestoreID = db.collection(rootCollection).document().id
         // XXX Write me: add photoMeta
-        db.collection(rootCollection).document(photoMeta.firestoreID).set(photoMeta)
+        Log.d(null,"In create photoMeta")
+        db.collection(rootCollection).add(photoMeta)
     }
 
     // https://firebase.google.com/docs/firestore/manage-data/delete-data#delete_documents
