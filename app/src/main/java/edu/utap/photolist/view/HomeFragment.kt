@@ -81,8 +81,11 @@ class HomeFragment :
         // Swipe left to delete
         initTouchHelper().attachToRecyclerView(rv)
 
+
+
         viewModel.observePhotoMeta().observe(viewLifecycleOwner){
             Log.d(null, "in observe photo")
+            adapter.submitList(it)
         }
 
         viewModel.observeSortInfo().observe(viewLifecycleOwner){
@@ -90,8 +93,9 @@ class HomeFragment :
         }
 
         binding.cameraButton.setOnClickListener {
-            viewModel.takePhoto(binding.inputET.text.toString()){
-                viewModel.createPhotoMeta(binding.inputET.text.toString(), randomUUID().toString() , it)
+            val randUUID = randomUUID().toString()
+            viewModel.takePhoto(randUUID){
+                viewModel.createPhotoMeta(binding.inputET.text.toString(), randUUID , it)
             }
         }
 

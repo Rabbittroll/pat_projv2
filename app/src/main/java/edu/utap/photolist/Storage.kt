@@ -16,9 +16,14 @@ class Storage {
     // https://firebase.google.com/docs/storage/android/upload-files#upload_from_a_local_file
     fun uploadImage(localFile: File, uuid: String, uploadSuccess:(Long)->Unit) {
         // XXX Write me
-        var file = Uri.fromFile(localFile)
-        val ref = photoStorage
-        var uploadTask = ref.putFile(file)
+        val file = Uri.fromFile(localFile)
+        val uuidRef = photoStorage.child(uuid)
+        Log.d(null, "passed uuid is: ")
+        Log.d(null, uuid)
+        val metadata = StorageMetadata.Builder()
+            .setContentType("image/jpg")
+            .build()
+        val uploadTask = uuidRef.putFile(file, metadata)
 
         // Register observers to listen for when the download is done or if it fails
         uploadTask
@@ -45,6 +50,13 @@ class Storage {
     fun deleteImage(pictureUUID: String) {
         // Delete the file
         // XXX Write me
+        photoStorage.child(pictureUUID).delete()
+            .addOnSuccessListener {
+                Log.d(javaClass.simpleName, "Deleted $pictureUUID")
+            }
+            .addOnFailureListener {
+                Log.d(javaClass.simpleName, "Delete FAILED of $pictureUUID")
+            }
     }
 
     fun uuid2StorageReference(uuid: String): StorageReference {

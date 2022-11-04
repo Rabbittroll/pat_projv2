@@ -65,14 +65,15 @@ class MainViewModel() : ViewModel() {
 
     fun removePhotoAt(position: Int) {
         // XXX Deletion requires two different operations.  What are they?
-        val temp = photoMetaList.value?.toMutableList()
-        temp?.removeAt(position)
-        photoMetaList.value = temp?.toList()
+        val photoMeta = getPhotoMeta(position)
+        storage.deleteImage(photoMeta.uuid)
+        dbHelp.removePhotoMeta(sortInfo.value!!,photoMeta, photoMetaList)
     }
 
     // Get a note from the memory cache
     fun getPhotoMeta(position: Int) : PhotoMeta {
         val note = photoMetaList.value?.get(position)
+        //Log.d(null, "in get photo meta")
         return note!!
     }
 
@@ -146,6 +147,8 @@ class MainViewModel() : ViewModel() {
     }
 
     fun glideFetch(uuid: String, imageView: ImageView) {
+        Log.d(null,"in glide fetch, uuid: ")
+        Log.d(null, uuid)
         Glide.fetch(storage.uuid2StorageReference(uuid),
             imageView)
     }

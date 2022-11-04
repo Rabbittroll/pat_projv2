@@ -41,7 +41,7 @@ class ViewModelDBHelper() {
                                  notesList: MutableLiveData<List<PhotoMeta>>) {
         // XXX Write me and use limitAndGet
         val query = db.collection(rootCollection).orderBy(sortInfo.sortColumn.toString())
-        limitAndGet(query, notesList)
+        limitAndGet(db.collection(rootCollection), notesList)
     }
 
     // https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document
@@ -55,6 +55,7 @@ class ViewModelDBHelper() {
         // XXX Write me: add photoMeta
         Log.d(null,"In create photoMeta")
         db.collection(rootCollection).add(photoMeta)
+        dbFetchPhotoMeta(sortInfo, notesList)
     }
 
     // https://firebase.google.com/docs/firestore/manage-data/delete-data#delete_documents
