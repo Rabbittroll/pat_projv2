@@ -61,6 +61,13 @@ class MainViewModel() : ViewModel() {
 
     fun sortInfoClick(sortColumn: SortColumn) {
         // XXX User has changed sort info
+        var ascendtf = true
+        if(sortInfo.value!!.sortColumn == sortColumn) {
+            ascendtf = false
+        }
+        sortInfo.value = SortInfo(sortColumn, ascendtf)
+        dbHelp.fetchPhotoMeta(sortInfo.value!!, photoMetaList)
+
     }
 
     fun removePhotoAt(position: Int) {
