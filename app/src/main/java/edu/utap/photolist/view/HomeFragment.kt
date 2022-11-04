@@ -119,10 +119,15 @@ class HomeFragment :
         }
 
         binding.cameraButton.setOnClickListener {
-            val randUUID = randomUUID().toString()
-            viewModel.takePhoto(randUUID){
-                viewModel.createPhotoMeta(binding.inputET.text.toString(), randUUID , it)
+            if(binding.inputET.text.isNullOrEmpty()){
+                Snackbar.make(binding.root, "Please Enter a Valid Name to Take a Picture", Snackbar.LENGTH_SHORT).show()
+            } else {
+                val randUUID = randomUUID().toString()
+                viewModel.takePhoto(randUUID){
+                    viewModel.createPhotoMeta(binding.inputET.text.toString(), randUUID , it)
+                }
             }
+
         }
 
         // XXX Write me, onclick listeners and observers
