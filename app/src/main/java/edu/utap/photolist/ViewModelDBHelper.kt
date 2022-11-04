@@ -40,8 +40,18 @@ class ViewModelDBHelper() {
     private fun dbFetchPhotoMeta(sortInfo: SortInfo,
                                  notesList: MutableLiveData<List<PhotoMeta>>) {
         // XXX Write me and use limitAndGet
-        val query = db.collection(rootCollection).orderBy(sortInfo.sortColumn.toString())
-        limitAndGet(db.collection(rootCollection), notesList)
+        val queryDir = when(sortInfo.ascending) {
+            true -> Query.Direction.ASCENDING
+            else -> Query.Direction.DESCENDING
+        }
+
+        val query = when(sortInfo.sortColumn){
+            SortColumn.TITLE -> db.collection(rootCollection).orderBy("pictureTitle", queryDir)
+            else -> db.collection(rootCollection).orderBy("byteSize", queryDir)
+        }
+        Log.d(null,"in fetch photo meta")
+        //Log.d(null,query.toString())
+        limitAndGet(query, notesList)
     }
 
     // https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document

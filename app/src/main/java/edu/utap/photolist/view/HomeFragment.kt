@@ -90,6 +90,32 @@ class HomeFragment :
 
         viewModel.observeSortInfo().observe(viewLifecycleOwner){
             Log.d(null, "in observe sort")
+            if(it.sortColumn == SortColumn.TITLE){
+                if (it.ascending) {
+                    binding.rowPictureTitle.setBackgroundColor(Color.YELLOW)
+                } else {
+                    binding.rowPictureTitle.setBackgroundColor(Color.RED)
+                }
+                binding.rowSize.setBackgroundColor(Color.TRANSPARENT)
+            }
+            if(it.sortColumn == SortColumn.SIZE){
+                if (it.ascending) {
+                    binding.rowSize.setBackgroundColor(Color.YELLOW)
+                } else {
+                    binding.rowSize.setBackgroundColor(Color.RED)
+                }
+                binding.rowPictureTitle.setBackgroundColor(Color.TRANSPARENT)
+            }
+            viewModel.fetchPhotoMeta()
+        }
+
+        binding.rowPictureTitle.setOnClickListener {
+            viewModel.sortInfoClick(SortColumn.TITLE)
+            //it.setBackgroundColor(Color.YELLOW)
+        }
+
+        binding.rowSize.setOnClickListener {
+            viewModel.sortInfoClick(SortColumn.SIZE)
         }
 
         binding.cameraButton.setOnClickListener {
